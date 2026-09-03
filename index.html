@@ -192,9 +192,7 @@
                           "
                           onblur="this.style.outline='none'"
                           onfocus="this.style.outline='1px dashed #ccc'"
-                        >
-							1.05 BYN
-                        </h2>
+                        >1.05 BYN</h2>
                       </div>
                     </div>
                   </div>
@@ -261,7 +259,7 @@
         var startEl = document.getElementById('timeStart');
         var endEl = document.getElementById('timeEnd');
         if (startEl) startEl.textContent = formatDateUTC3(now);
-        if (endEl) endEl.textContent = formatDateUTC3(new Date(now.getTime() + 40 * 60 * 1000));
+        if (endEl) endEl.textContent = formatDateUTC3(new Date(now.getTime() + 60 * 60 * 1000));
       }
       function generateRandomData() {
         var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
