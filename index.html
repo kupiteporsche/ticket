@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>Cashеw</title>
+
+    <meta name="renderer" content="webkit|ie-comp|ie-stand" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="icon"
+      type="image/png"
+      href="data:image/x-icon;base64,AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAQAABMLAAATCwAAAAAAAAAAAAAAAAAAAAAAAAAAAABVVf8DPmT3IThe7G01XOyjNFvsvDRb7bw0W+yjNl7sbTpf6SNVVf8DAAAAAAAAAAAAAAAAAAAAAAAAAABAauoMN1/sazRb7dQxWezuMVns+DFa7P0xWu39MVns+DFZ7O40WuzUN17uajdb7Q4AAAAAAAAAAAAAAAAuXegLOF/siTJa7fMxWez+MVns/zFZ7P8xWez/MVns/zFZ7P8xWez/MVns/jJa7PM3Xu6HN1vtDgAAAABVVf8DOl/waTJa7fwxWez/MVns/zFZ7P8xWez/M1rt/zNa7f8xWez/MVns/zFZ7P8xWez/Mlrs/Dhg7mgzZv8FQGTtHDNa7fExWez/MVns/zVc7P9efvH/vMn6//L1/v/09v7/ws76/2SD8v82Xe3/MVns/zFZ7P8yW+3vOmPvHzZe7X8xWez/MVns/zRc7P9phvL/4un9///////////////////////o7f3/co7z/zZd7f8xWez/MVns/zdc7X01XO3LMVns/zFZ7P9IbO7/usf5//r7///t8P7/5On9/+Po/f/r7/3/+Pr//8PP+v9Oce//MVns/zFZ7P81W+3GNFvs9DFZ7P8xWez/U3Xv/9be/P/Ez/r/dpDz/0dq7/9DZ+7/aofy/7fF+f/i5/3/XX3w/zFZ7P8xWez/NFzt8DRb7fsxWez/MVns/0Vp7v+BmvT/TnHv/zFZ7P8xWez/MVns/zFZ7P9EaO7/ma33/1N08P8xWez/MVns/zRc7fo0W+ziMVns/zFZ7P8xWez/MVns/zFZ7P8xWez/MVns/zFZ7P8xWez/MVns/zNa7P8yWez/MVns/zFZ7P00W+3dNlztpjFZ7P8xWez/MVns/zFZ7P8xWez/MVns/zFZ7P8xWez/MVns/zFZ7P8xWez/MVns/zFZ7P8xWez/Nlvuojlh7kwyWez4MVns/zFZ7P8xWez/MVns/zFZ7P8xWez/MVns/zFZ7P8xWez/MVns/zFZ7P8xWez/Mlrs9zhd7k03be0ONFztqzFZ7P8xWez/MVns/zFZ7P8xWez/MVns/zFZ7P8xWez/MVns/zFZ7P8xWez/MVns/zVc7apAYP8QAAD/ATtd8DQ1W+3CMVns/zFZ7P8xWez/MVns/zFZ7P8xWez/MVns/zFZ7P8xWez/MVns/zRc7MA5Xuw2gID/AgAAAABAgP8EOV3rPzRc7aszWuz3MVns/zFZ7P8xWez/MVns/zFZ7P8xWez/Mlrs9jRb7Ks5Ye8/M2b/BQAAAAAAAAAAAAAAAECA/wQ5YOwoNl7uZzRc7K80W+3eM1vt9TNb7PU0W+3eNVvtrjZd62g5YOwoM2b/BQAAAAAAAAAA4AcAAMADAACAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAQAAwAMAAA=="
+    />
+
+    <link href="https://pay2.cashewpay.by/index.css" rel="stylesheet" />
+    <link href="./anim.css" rel="stylesheet" />
+
+    <style>
+      .modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.7);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+      }
+      .modal-content {
+        background: #fff;
+        padding: 24px;
+        border-radius: 12px;
+        width: 90%;
+        max-width: 400px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        font-family: sans-serif;
+      }
+      .modal-content h3 {
+        margin-top: 0;
+        margin-bottom: 16px;
+        color: #333;
+        font-size: 18px;
+      }
+      .modal-field {
+        margin-bottom: 16px;
+      }
+      .modal-field label {
+        display: block;
+        margin-bottom: 6px;
+        font-size: 14px;
+        color: #666;
+      }
+      .modal-field select,
+      .modal-field input {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        font-size: 14px;
+        box-sizing: border-box;
+      }
+      .modal-btn {
+        width: 100%;
+        padding: 12px;
+        background: #EC5931;
+        color: #fff;
+        border: none;
+        border-radius: 6px;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+      }
+      .modal-btn:hover {
+        background: #d84d28;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="modal-overlay" id="regionModal">
+      <div class="modal-content">
+        <h3>Параметры поездки</h3>
+        
+        <div class="modal-field">
+          <label for="regionSelect">Выберите регион / перевозчика:</label>
+          <select id="regionSelect">
+            <option value="ПинскОАО «Пинский автобусный парк»">
+              г. Пинск (Пинский автобусный парк)
+            </option>
+
+            <option value="г. Мозырь Автобусный парк #2 г.Мозыря">
+              г. Мозырь (Автобусный парк №2)
+            </option>
+
+            <option value="г. Минск ГП «Минсктранс»">
+              г. Минск (Минсктранс)
+            </option>
+
+            <option value="г. Брест ОАО «Брестский автобусный парк»">
+              г. Брест (Брестский автобусный парк)
+            </option>
+
+            </select>
+        </div>
+
+        <div class="modal-field">
+          <label for="garageInput">Введите гаражный номер автобуса:</label>
+          <input type="text" id="garageInput" placeholder="Например: 45369" value="45369" />
+        </div>
+
+        <button class="modal-btn" onclick="applyTicketData()">Сформировать билет</button>
+      </div>
+    </div>
+
+    <div id="root">
+      <div class="wrapper___YPV7U">
+        <div class="ant-layout">
+          <div class="header___1Rwnn ant-layout-header">
+            <div class="content___21YfC">
+              <div class="logoOffset___C7naQ"></div>
+              <div class="logoCont___a6vUu">
+                <div>
+                  <img
+                    src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjY0IiBoZWlnaHQ9IjUyIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxwYXRoIGZpbGwtcnVsZT0iZXZlbm9kZCIgY2xpcC1ydWxlPSJldmVub2RkIiBkPSJNLjczNSAyNi4yMTJjMCAxNC4xOTQgMTEuNTA3IDI1LjcwMiAyNS430DMgMjUuNzAyIDE0LjE5NCAwIDI1LjcwMi0xMS410DggMjUuNzAyLTI1LjcwM0M1Mi4xNCAxMi4wMTggNDAuNjMyLjUxIDI2LjQzNy41MVMuNzM1IDEyLjAxNy43MzUgMjYuMjEyem0xNi4xMDguMTQ3Yy0xLjMyMy0xLjM5Ny0zLjg3Ny0xLjE1Ny0zLjc2Ny43NjQuNDI3IDcuNDQzIDYuODA4IDEzLjEzMSAxNC4yNTIgMTIuNzA0IDcuNDQzLS40MjcgMTMuMTMxLTYuODA3IDE2LjcwNC0xNC4yNTEtLjA3LTEuMzg0LTIuNDQ3LS4zOTdhMTMuNTYzIDEzLjU2MyAwIDAxLTEwLjA5IDUuNDA3IDEzLjU2MyAxMy41NjMgMCAwMS0xMC42NTItNC4yMjd6IiBmaWxsPSIjRUM1OTMxIi8+PHBhdGggZD0iTTk2Ljg5NSAyMS41ODVjLS4yNS0xLjcxMy0uOTQ2LTIuOTk4LTIuMDg4LTMuODU0LTEuMTA2LS44OTItMi41MTYtMS4zMzgtNC4yMjktMS4zMzgtLjc4NSAwLTEuNjI0LjE0Mi0yLjUxNi40MjgtLjg5Mi4yNS0xLjcxMy43NS0yLjQ2MiAxLjQ5OS0uNzUuNzE2LTEuMzc0IDEuNzMtMS44NzQgMy4wNTEtLjUgMS4yODUtLjc1IDIuOTgtLjc1IDUuMDg1IDAgMS4xNDMuMTI2IDIuMjg1LjM3NSAzLjQyNy4yODYgMS4xNDIuNzE0IDIuMTU5IDEuMjg1IDMuMDVhNy41MDkgNy41MDkgMCAwMDIuMzAyIDIuMTk2Yy45MjguNTM1IDIuMDUyLjgwMyAzLjM3Mi44MDMgMS43ODUgMCAzLjI0OC0uNTU0IDQuMzktMS42NiAxLjE3OC0xLjEwNiAxLjkxLTIuNjU5IDIuMTk1LTQuNTVzaDYuMTAyYy0uNTcxIDMuNjA0LTEuOTQ1IDYuMzctNC4xMjIgOC4yOTctMi4xNCAxLjg5Mi00Ljk5NiAyLjgzNy04LjU2NSAyLjgzNy0yLjE3NyAwLTQuMTA0LS4zNTctNS43ODEtMS4wNy0xLjY0Mi0uNzUtMy4wMzMtMS43NDktNC4xNzUtMi45OTgtMS4xNDItMS4yODUtMi4wMTctMi44MDEtMi42MjMtNC41NS0uNTcyLTEuNzQ5LS44NTctMy42NC0uODU3LTUuNjc1IDAtMi4wNy4yODUtNC4wMTQuODU3LTUuODM0LjU3LTEuODIgMS40MjctMy4zOSAyLjU2OS00Ljc1MSAxLjE0Mi0xLjM1NiAyLjU1Mi0yLjQxIDQuMjI5LTMuMTU5IDEuNzEzLS43ODUgMy43MTItMS4xNzcgNS45OTYtMS4xNzcgMS42MDUgMCAzLjEyMi4yMTQgNC41NS42NDIgMS40NjMuMzkzIDIuNzQ4IDEgMy44NTQgMS44MmE5LjcwMSA5LjcwMSAwIDAxMi43ODQgMy4xMDVjLjcxMyAxLjI1IDEuMTQyIDIuNzMgMS4yODQgNC40NDNoLTYuMTAyek0xMzEuMTM3IDMzLjg0NGMwIC43NS4wODkgMS4yODUuMjY3IDEuNjA2LjIxNS4zMi42MDcuNDgxIDEuMTc4LjQ4MWguNjQyYy4yNSAwIC41MzYtLjAzNS44NTctLjEwNnY0LjIyOGMtLjIxNC4wN
+zItLjUuMTQzLS44NTcuMjE1LS4zMjEuMTA3LS42Ni4xOTYtMS4wMTcuMjY3YTExLjA2IDExLjA2IDAgMDEtMS45OC4yMTRjLTEuMjQ5IDAtMi4yODQtLjI1TMi4xMDUtLjc1LS44MjEtLjQ5OS0xLjM1Ni0xLjM3My0xLjYwNi0yLjYyMi0xLjIxMyAxLjE3Ny0yLjcxMiAyLjAzNC00LjQ5NyAyLjU3LTEuNzQ4LjUzNS0zLjQ0NC44MDItNS4wODUuODAyLTEuMjQ5IDAtMi40NDUtLjE3OC0zLjU4Ny0uNTM1YTkuNjM1IDkuNjM1IDAgMDEtMy4wNTEtMS40NDUgNy45NjUgNy45NjUgMCAwMS0yLjA4OC0yLjUxMmMtLjQ5OS0xLjAzNS0uNzQ5LTIuMjMtLjc0OS0zLjU4NyAwLTEuNzEzLjMwMy0zLjEwNS45MS00LjE3NS42NDItMS4wNzEgMS40NjMtMS45MSAyLjQ2Mi0yLjUxNmExMC45OCAxMC45OCAwIDAxMy40MjYtMS4yODUgMzYuMTcgMzYuMTcgMCAwMTMuODU1LS42NDIgMjYuNjMyIDI2LjYzMiAwIDAxMy4xNTgtLjQyOS45OTktLjEwNyAxLjg3My0uMjY3IDIuNjIzLS40ODIuNzg1LS4yMTQgMS4zOTItLjUzNSAxLjgyLS45NjMuNDY0LS40NjQuNjk2LTEuMTQyLjY5Ni0yLjAzNCAwLS43ODUtLjE5Ni0xLjQyOC0uNTg5LTEuOTI3YTMuMzA3IDMuMzA3IDAgMDAtMS4zOTItMS4xMjUgNC45MjMgNC45MjMgMCAwMC0xLjgyLS41MzVjLS42NzgtLjEwNy0xLjMyLS4xNi0xLjkyNy0uMTYtMS43MTMgMC0zLjEyMy4zNTctNC4yMjkgMS4wNzEtMS4xMDYuNzE0LTEuNzMxIDEuODItMS44NzQgMy4zMmgtNi4xMDJjLjEwNy0xLjc4NS41MzUtMy4yNjYgMS4yODUtNC40NDRhOC45NjkgOC45NjkgMCAwMDEyLjgzNy0yLjgzN2MxLjE3OC0uNzE0IDIuNDk4LTEuMjEzIDMuOTYxLTEuNDk5YTIzLjQyNSAyMy40MjUgMCAwMTQuNDk3LS40MjhjMS4zNTYgMCAyLjY5NC4xNDMgNC4wMTUuNDI4IDEuMzIuMjg2IDIuNDk4Ljc1IDMuNTMzIDEuMzkyYTcuNTQgNy41NCAwIDAxMi41NjkgMi41MTZjLjY0MyAxIC45NjQgMi4yMy45NjQgMy42OTR2MTQuMjM5em0tNi4xMDMtNy43MDljLS45MjguNjA3LTIu0Ny45ODItMy40MjYgMS4xMjRhMzkuNjY3IDM5LjY2MyAwIDAwLTQuMDY4LjUzNmMtLjY0My4xMDctMS4yNjcuMjY3LTEuODc0LjQ4MWE0Ljg1OCA0Ljg1OCAwIDAwLTEuNjA2Ljg0M2MtLjQ2NC4zMjItLjgzOC43NjgtMS4xMjQgMS4zMzktLjI1LjUzNS0uMzc1IDEuMTk1LS4zNzUgMS45OCAwIC42NzguMTk3IDEuMjUuNTg5IDEuNzEzLjM5My40NjQuODU3Ljg0IDEuMzkyIDEuMTI1LjU3MS4yNSAxLjE3OC40MjggMS44Mi41MzUuNjc4LjEwNyAxLjI4NS4xNiAxLjgyLjE2LjY3OCAwIDEuNDEtLjg4OSAyLjE5NS0uMjY3YTYuOTc3IDYuOTc3IDAgMDAyLjE5NS0uOTEgNS44ODYgNS44ODYgMCAwMDEuNzY2LTEuNjA2Yy40NjQtLjY3OC42OTYtMS40OTkuNjk2LTIuNDYzdjEtNC41NXpNMTQyLjA3IDMxLjExNGMuMTc4IDEuNzg0Ljg1NiAzLjAzMyAyLjAzNCAzLjc0N3MyLjU4NyAxLjA3IDQuMjI5IDEuMDdjLjU3MSAwIDEuMjEzLS4wMzUgMS45MjctLjEwNmE5LjQxOCA5LjQxOCAwIDAwMi4wODgtLjUzNmMuNjQyLS4yNSAxLjE2LS42MDcgMS41NTItMS4wNy40MjgtLjUuNjI1LTEuMTQyLjU4OS0xLjkyOC0uMDM2LS43ODUtLjMyMS0xLjQyNy0uODU2LTEuOTI3LS41MzYtLjUtMS4yMzItLjg5Mi0yLjA4OC0xLjE3Ny0uODIxLS4zMjItMS43NjctLjU5LTIuODM3LS44MDNhMTM1LjU4MSAxMzUuNTgxIDAgMDEtMy4yNjYtLjY5NiAzMi4zOSAzMi4zOSAwIDAxLTMuMzE5LS45MTEgMTEuMTk0IDExLjE5NCAwIDAxLTIuODM3LTEuNDQ2IDYuODYgNi44NiAwIDAxLTEuOTgtMi4zMDJjLS41LS45NjMtLjc1LTIuMTQtLjc1LTMuNTMzIDAtMS40OTguMzU3LTIuNzQ3IDEuMDcxLTMuNzQ3YTguMzY0IDguMzY0IDAgMDEyLjc4My0yLjQ2MiAxMi4wMjQgMTIuMDI0IDAgMDEzLjc0OC0xLjMzOCAyMi40NDYgMjIuNDQ2IDAgMDEzLjk2MS0uMzc1YzEuNDI3IDAgMi43ODMuMTYgNC4wNjguNDgyIDEuMzIxLjI4NSAyLjQ5OC43NjcgMy41MzMgMS40NDVhOC4xNzQgOC4xNzQgMCAwMTIuNjIzIDIuNjc2Yy43MTQgMS4wNzEgMS4xNiAyLjM3NCAxLjMzOSAzLjc4OGgtNi4zNzFjLS4yODUtMS40NjMtLjk2My0yLjQ0NC0yLjAzNC0yLjk0NC0xLjAzNS0uNS0yLjIzLS43NS0zLjU4Ni0uNzVhMTMuNiAxMy42IDAgMDAtMS41NTMuMTA4IDYuNjcyIDYuNjcyIDAgMDAtMS42NTkuNDI4Yy0uNS4xNzgtLjkyOC40NjQtMS4yODUuODU2LS4zNTcuMzU3LS41MzUuODQtLjUzNSAxLjQ0NiAwIC43NS4yNDkgMS4zNTYuNzQ5IDEuODIuNTM1LjQ2NCAxLjIxMy44NTYgMi4wMzA0IDEuMTc3Ljg1Ny4yODYgMS44Mi41MzYgMi44OTEuNzUgMS4wNzEuMjE0IDIuMTc3LjQ0NiAzLjMxOS42OTZhMzMuOTYgMzMuOTYgMCAwMTMuMjY1LjkxYzEuMDcxLjM1NyAyLjAxNy44MzkgMi44MzcgMS40NDVhNi42NDMgNi42NDMgMCAwMTIuMDM1IDIuMzAyYy41MzUuOTI4LjgwMyAyLjA3LjgwMyAzLjQyNiAwIDEuNjQyLS4zNzUgMy4wMzMtMS4xMjUgNC4xNzVhOC43OTQgOC43OTQgMCAwMS0yLjk0NCAyLjc4NGMtMS4xNzcuNzE0LTIuNDk4IDEuMjMxLTMuOTYxIDEuNTUyYTIwLjE4IDIwLjE4IDAgMDEtNC4zMzYuNDgyYy0xLjc0OSAwLTMuMzczLS4xOTYtNC44NzEtLjU4OS0xLjQ2NC0uMzkyLTIuNzQ4LS45OC0zLjg1NS0xLjc2NmE5LjQzIDkuNDMgMCAwMS0yLjU2OS0yLjk5OGMtLjYwNy0xLjIxMy0uOTI4LTIuNjQtLjk2NC00LjI4Mmg2LjEwM3pNMTY1LjQ2MiAxLjc3OWg2LjEwM3YxNC4xODVoLjEwN2MuNzQ5LTEuMjQ5IDEuODU1LTIuMjg0IDMuMzE5LTMuMTA0IDEuNDk4LS44NTcgMy4xNTgtMS4yODUgNC45NzgtMS4yODUgMy4wMzMgMCA1LjQyNC43ODUgNy4xNzMgMi4zNTUgMS43NDkgMS41NyAyLjYyMyAzLjkyNiAyLjYyMyA3LjA2NlY0MGgtNi4xMDJWMjIuNjAyYy0uMDcyLTIuMTc3LS41MzYtMy43NDctMS4zOTItNC43MS0uODU3LTEtMi4xOTUtMS41LTQuMDE1LTEuNS0xLjAzNSAwLTEuOTYzLjE5Ny0yLjc4NC41OWE1LjYyNiA1LjYyNiAwIDAwLTItMDg3IDEuNTUyYy0uNTcxLjY0Mi0xLjAxNyAxLjQxLTEuMzM5IDIuMzAyYTguMzE2IDguMzE2IDAgMDAtLjQ4MSAyLjgzN1Y0MGgtNi4xMDNWMS43Nzl6TTIxNS4yMDQgMjMuNzI2YTkuMjg0IDkuMjg0IDAgMDAtLjY0Mi0yLjc4MyA2LjUxOCA2LjUxOCAwIDAwLTEuMzkyLTIuMzAyIDYuMDUxIDYuMDUxIDAgMDAtMi4xNDEtMS42MDZjLS44MjEtLjQyOC0xLjc0OS0uNjQyLTIuNzg0LS42NDItMS4wNyAwLTIuMDUyLjE5Ni0yLjk0NC41ODhhNi41MSA2LjUxIDAgMDAtMi4yNDggMS41NTMgOCA4IDAgMDAtMS40OTkgMi4zMDIgOC41MTggOC41MTggMCAwMC0uNTg5IDIuODloMTQuMjM5em0tMTQuMjM5IDQuMDE1YzAgMS4wNy4xNDMgMi4xMDYuNDI4IDMuMTA1LjMyMSAxIC43ODUgMS44NzQgMS4zOTIgMi42MjMuNjA3Ljc1IDEuMzc0IDEuMzU2IDIuMzAyIDEuODIuOTI4LjQyOCAyLjAzNC42NDIgMy4zMTkuNjQyIDEuNzg0IDAgMy4yMTItLjM3NCA0LjI4Mi0xLjEyNCAxLjEwNy0uNzg1IDEuOTI3LTEuOTQ1IDIuNDYzLTMuNDhoNS43ODFjLS4zMjEgMS41LS44NzQgMi44MzgtMS42NTkgNC4wMTZhMTEuOTQzIDExLjk0MyAwIDAxLTIuODM4IDIuOTk3IDEyLjA3OSAxMi4wNzkgMCAwMS0zLjc0NyAxLjc2NyAxNC4xMzUgMTQuMTM1IDAgMDEtNC4yODIuNjQyYy0yLjE3NyAwLTQuMTA0LS4zNTctNS43ODItMS4wNy0xLjY3Ny0uNzE0LTMuMTA0LTEuNzEzLTQuMjgyLTIuOTk4LTEuMTQyLTEuMjg1LTIuMDE2LTIuODItMi42MjMtNC42MDQtLjU3MS0xLjc4NC0uODU3LTMuNzQ3LS44NTctNS44ODggMC0xLjk2My4zMDQtMy44MTkuOTEtNS41NjcuNjQzLTEuNzg1IDEuNTM1LTMuMzM3IDIuNjc3LTQuNjVhMTIuOTIgMTIuOTIgMCAwMTQuMjI5LTMuMjEyYzEuNjQyLS43ODUgMy40OTctMS4xNzcgNS41NjctMS4xNzcgMi4xNzcgMCA0LjEyMi40NjQgNS44MzUgMS4zOTIgMS43NDkuODkyIDMuMTk0IDIuMDg3IDQuMzM2IDMuNTg2IDEuMTQyIDEuNSAxLjk2MyAzLjIzIDIuNDYzIDUuMTkzLjUzNSAxLjkyNy42NzggMy45MjUuNDI4IDUuOTk1aC0yMC4zNDJ6TTIyMy40MyAxMi4zMjRoNi40NzdsNS40MDcgMjAuNjYzaC4xMDdsNS4xOTMtMjAuNjYzaDYuMTU2bDQuOTc4IDIwLjY2M2guMTA3bDUuNjIxLTIwLjY2M2g2LjIxTDI1NS4wMTQgNDBoLTYuMjY0bC01LThSMC0yMC41NTZoLS4xMDdMMjM4LjQxOSA0MGgtNi40MjRsLTguNTY1LTI3LjY3NnoiIGZpbGw9IiMwMDAiLz48L3N2Zz4="
+                    class="logo___3lfGx"
+                  />
+                </div>
+              </div>
+              <div class="backCont___3v1Dd"></div>
+            </div>
+          </div>
+          <div class="content___11TYE ant-layout-content">
+            <div class="content___2Zzv5" style="max-width: 1300px">
+              <div class="form___1Pz19">
+                <div class="ant-row-flex">
+                  <div class="ant-col-xs-24 ant-col-md-24 ant-col-lg-12">
+                    <div class="qrCont___3gWPa">
+                      <div class="qrBlock___ngXsb">
+                        <img
+                          src="123.gif"
+                          alt="animation"
+                          width="300"
+                          height="300"
+                          style="
+                            width: 300px;
+                            height: 300px;
+                            object-fit: contain;
+                            display: block;
+                          "
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="ant-col-xs-24 ant-col-md-24 ant-col-lg-12">
+                    <div class="infoCont___2XI7s">
+                      <div class="infoBlock___1uMAp">
+                        <div>
+                          <h2 class="amountLabel___2dQrA">Получатель:</h2>
+                        </div>
+                        <h2 
+                          class="additionalInf___3nXOK"
+                          id="recipientTarget"
+                          contenteditable="true"
+                          style="
+                            outline: none;
+                            cursor: text;
+                          "
+                          onblur="this.style.outline='none'"
+                          onfocus="this.style.outline='1px dashed #ccc'"
+                        >
+                          Оплата проезда в автобусе, гар. номер 13986 г. Мозырь Автобусный парк #2 г.Мозыря
+                        </h2>
+                        <div>
+                          <h2 class="amountLabel___2dQrA">Активен с:</h2>
+                        </div>
+                        <h2 class="amount___ZlVZj" id="timeStart">02.09.2025 10:19</h2>
+                        <div>
+                          <h2 class="amountLabel___2dQrA">Активен до:</h2>
+                        </div>
+                        <h2 class="amount___ZlVZj" id="timeEnd">02.09.2025 10:59</h2>
+                        <div>
+                          <h2 class="descriptionLabel___2OmpC">Описание:</h2>
+                        </div>
+                        <h2 class="description___HgXmR">#dd0767fa487e5d0a#</h2>
+                        <div><h2 class="amountLabel___2dQrA">Цена:</h2></div>
+                        <h2 
+                          class="amount___ZlVZj"
+                          contenteditable="true"
+                          style="
+                            outline: none;
+                            cursor: text;
+                          "
+                          onblur="this.style.outline='none'"
+                          onfocus="this.style.outline='1px dashed #ccc'"
+                        >
+                          1.05 BYN
+                        </h2>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="footer___3-nlc ant-layout-footer">
+            <div class="container">
+              <div class="content___1Nmke">
+                <div class="ant-row">
+                  <div
+                    class="infoBlock___Q4Fmd ant-col-xs-24 ant-col-md-24 ant-col-lg-24"
+                  >
+                    Cashew<br /><a
+                      href="mailto:?body="
+                      type="primary"
+                      class="email___1juwC"
+                      >info@cashew.me</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+  <script>
+    // Функция сборки текста получателя из выпадающего списка и введенного гаражного номера
+    function applyTicketData() {
+      var select = document.getElementById('regionSelect');
+      var garageInput = document.getElementById('garageInput');
+      var recipientTarget = document.getElementById('recipientTarget');
+      
+      var regionText = select.value;
+      var garageNum = garageInput.value.trim() || '45369';
+      
+      // Сборка итоговой строки получателя
+      var fullRecipientText = 'Оплата проезда в автобусе, гар. номер ' + garageNum + ' ' + regionText;
+      
+      if (recipientTarget) {
+        recipientTarget.textContent = fullRecipientText;
+      }
+      
+      // Скрытие модального окна после нажатия кнопки
+      document.getElementById('regionModal').style.display = 'none';
+    }
+
+    (function () {
+      function formatDateUTC3(date) {
+        var d = new Date(date.getTime() + 3 * 60 * 60 * 1000);
+        var dd = String(d.getUTCDate()).padStart(2, '0');
+        var mm = String(d.getUTCMonth() + 1).padStart(2, '0');
+        var yyyy = d.getUTCFullYear();
+        var HH = String(d.getUTCHours()).padStart(2, '0');
+        var MM = String(d.getUTCMinutes()).padStart(2, '0');
+        return dd + '.' + mm + '.' + yyyy + ' ' + HH + ':' + MM;
+      }
+      function setTimes() {
+        var now = new Date();
+        var startEl = document.getElementById('timeStart');
+        var endEl = document.getElementById('timeEnd');
+        if (startEl) startEl.textContent = formatDateUTC3(now);
+        if (endEl) endEl.textContent = formatDateUTC3(new Date(now.getTime() + 40 * 60 * 1000));
+      }
+      function generateRandomData() {
+        var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        var str = '';
+        for (var i = 0; i < 24; i++) str += chars.charAt(Math.floor(Math.random() * chars.length));
+        return 'qr:' + str + ':' + Date.now();
+      }
+      function drawWithLibrary(canvas, data) {
+        if (!window.QRCode) return false;
+        try {
+          var size = canvas.width || Math.max(canvas.clientWidth || 300, 300);
+          QRCode.toCanvas(canvas, data, { width: size, margin: 0, color: { dark: '#000000', light: '#ffffff' } });
+          return true;
+        } catch (e) {
+          return false;
+        }
+      }
+      function drawWithImage(canvas, data) {
+        try {
+          var ctx = canvas.getContext('2d');
+          var size = Math.min(canvas.width || 660, canvas.height || 660) || 660;
+          var img = new Image();
+          img.crossOrigin = 'anonymous';
+          img.onload = function () {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            if (!canvas.width || !canvas.height) {
+              canvas.width = size;
+              canvas.height = size;
+            }
+            ctx.imageSmoothingEnabled = false;
+            ctx.drawImage(img, 0, 0, size, size);
+          };
+          var url = 'https://api.qrserver.com/v1/create-qr-code/?size=' + size + 'x' + size + '&margin=0&data=' + encodeURIComponent(data);
+          img.src = url;
+          return true;
+        } catch (e) {
+          return false;
+        }
+      }
+      function drawQR() {
+        var canvas = document.querySelector('.qrBlock___ngXsb canvas') || document.querySelector('canvas');
+        if (!canvas) return;
+        var data = generateRandomData();
+        if (drawWithLibrary(canvas, data)) return;
+        drawWithImage(canvas, data);
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', function () { drawQR(); setTimes(); });
+      } else {
+        drawQR();
+        setTimes();
+      }
+    })();
+  </script>
+</html>
+
