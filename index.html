@@ -3,7 +3,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <title>Cashеw</title>
+    <title>Cashew</title>
 
     <meta name="renderer" content="webkit|ie-comp|ie-stand" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -82,6 +82,15 @@
     <div class="modal-overlay" id="regionModal">
       <div class="modal-content">
         <h3>Параметры поездки</h3>
+
+        <div class="modal-field">
+          <label for="transportSelect">Вид транспорта:</label>
+          <select id="transportSelect">
+            <option value="автобусе">Автобус</option>
+            <option value="троллейбусе">Троллейбус</option>
+            <!--	<option value="трамвае">Трамвай</option>	--!>
+          </select>
+        </div>
         
         <div class="modal-field">
           <label for="regionSelect">Выберите регион / перевозчика:</label>
@@ -89,27 +98,43 @@
             <option value="
 			г. Пинск 
 			ОАО «Пинский автобусный парк»">
-              г. Пинск (Пинский автобусный парк)
+            г. Пинск (Пинский автобусный парк)
             </option>
 
-            <option value="г. Мозырь Автобусный парк #2 г.Мозыря">
+            <option value="
+			г. Мозырь
+			Автобусный парк #2 г.Мозыря">
               г. Мозырь (Автобусный парк №2)
+            </option>
+<!--
+            <option value="г. Гомель «Гомельоблавтотранс» филиал «Горэлектротранспорт»">
+              г. Гомель «Гомельоблавтотранс» филиал «Горэлектротранспорт»
             </option>
 
             <option value="г. Минск ГП «Минсктранс»">
               г. Минск (Минсктранс)
             </option>
-
-            <option value="г. Брест ОАО «Брестский автобусный парк»">
-              г. Брест (Брестский автобусный парк)
+--!>
+            <option value="
+			г. Брест
+			КУП Брестский общественный транспорт">
+            
+			г. Брест (Брестский общественный транспорт)
             </option>
-
-            </select>
+          </select>
         </div>
 
         <div class="modal-field">
-          <label for="garageInput">Введите гаражный номер автобуса:</label>
-          <input type="text" id="garageInput" placeholder="Например: 45369" value="45369" />
+          <label for="garageInput">Введите гаражный номер:</label>
+          <input type="text" id="garageInput" placeholder="Например: 031" value="031" />
+        </div>
+
+        <div class="modal-field">
+          <label for="ticketTypeSelect">Фраза «билет на одну поездку»:</label>
+          <select id="ticketTypeSelect">
+            <option value="yes">Добавлять (билет на одну поездку: 1.05 руб)</option>
+            <option value="no">Не добавлять</option>
+          </select>
         </div>
 
         <button class="modal-btn" onclick="applyTicketData()">Сформировать билет</button>
@@ -124,7 +149,7 @@
               <div class="logoOffset___C7naQ"></div>
               <div class="logoCont___a6vUu">
 					      <header>
-						      <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjY0IiBoZWlnaHQ9IjUyIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxwYXRoIGZpbGwtcnVsZT0iZXZlbm9kZCIgY2xpcC1ydWxlPSJldmVub2RkIiBkPSJNLjczNSAyNi4yMTJjMCAxNC4xOTQgMTEuNTA3IDI1LjcwMiAyNS43MDMgMjUuNzAyIDE0LjE5NCAwIDI1LjcwMi0xMS41MDggMjUuNzAyLTI1LjcwM0M1Mi4xNCAxMi4wMTggNDAuNjMyLjUxIDI2LjQzNy41MVMuNzM1IDEyLjAxNy43MzUgMjYuMjEyem0xNi4xMDguMTQ3Yy0xLjMyMy0xLjM5Ny0zLjg3Ny0xLjE1Ny0zLjc2Ny43NjQuNDI3IDcuNDQzIDYuODA4IDEzLjEzMSAxNC4yNTIgMTIuNzA0IDcuNDQzLS40MjcgMTMuMTMxLTYuODA3IDEyLjcwNC0xNC4yNTEtLjA3LTEuMjMzLTEuNzA1LTEuMzg0LTIuNDQ3LS4zOTdhMTMuNTYzIDEzLjU2MyAwIDAxLTEwLjA5IDUuNDA3IDEzLjU2MyAxMy41NjMgMCAwMS0xMC42NTItNC4yMjd6IiBmaWxsPSIjRUM1OTMxIi8+PHBhdGggZD0iTTk2Ljg5NSAyMS41ODVjLS4yNS0xLjcxMy0uOTQ2LTIuOTk4LTIuMDg4LTMuODU0LTEuMTA2LS44OTItMi41MTYtMS4zMzgtNC4yMjktMS4zMzgtLjc4NSAwLTEuNjI0LjE0Mi0yLjUxNi40MjgtLjg5Mi4yNS0xLjcxMy43NS0yLjQ2MiAxLjQ5OS0uNzUuNzEzLTEuMzc0IDEuNzMtMS44NzQgMy4wNTEtLjUgMS4yODUtLjc1IDIuOTgtLjc1IDUuMDg1IDAgMS4xNDMuMTI2IDIuMjg1LjM3NSAzLjQyNy4yODYgMS4xNDIuNzE0IDIuMTU5IDEuMjg1IDMuMDVhNy41MDkgNy41MDkgMCAwMDIuMzAyIDIuMTk2Yy45MjguNTM1IDIuMDUyLjgwMyAzLjM3Mi44MDMgMS43ODUgMCAzLjI0OC0uNTU0IDQuMzktMS42NiAxLjE3OC0xLjEwNiAxLjkxLTIuNjU5IDIuMTk1LTQuNjU3aDYuMTAyYy0uNTcxIDMuNjA0LTEuOTQ1IDYuMzctNC4xMjIgOC4yOTctMi4xNCAxLjg5Mi00Ljk5NiAyLjgzNy04LjU2NSAyLjgzNy0yLjE3NyAwLTQuMTA0LS4zNTctNS43ODEtMS4wNy0xLjY0Mi0uNzUtMy4wMzMtMS43NDktNC4xNzUtMi45OTgtMS4xNDItMS4yODUtMi4wMTctMi44MDEtMi42MjMtNC41NS0uNTcyLTEuNzQ5LS44NTctMy42NC0uODU3LTUuNjc1IDAtMi4wNy4yODUtNC4wMTQuODU3LTUuODM0LjU3LTEuODIgMS40MjctMy4zOSAyLjU2OS00LjcxMSAxLjE0Mi0xLjM1NiAyLjU1Mi0yLjQxIDQuMjI5LTMuMTU5IDEuNzEzLS43ODUgMy43MTItMS4xNzcgNS45OTYtMS4xNzcgMS42MDUgMCAzLjEyMi4yMTQgNC41NS42NDIgMS40NjMuMzkzIDIuNzQ4IDEgMy44NTQgMS44MmE5LjcwMSA5LjcwMSAwIDAxMi43ODQgMy4xMDVjLjcxMyAxLjI1IDEuMTQyIDIuNzMgMS4yODQgNC40NDNoLTYuMTAyek0xMzEuMTM3IDMzLjg0NGMwIC43NS4wODkgMS4yODUuMjY3IDEuNjA2LjIxNS4zMi42MDcuNDgxIDEuMTc4LjQ4MWguNjQyYy4yNSAwIC41MzYtLjAzNS44NTctLjEwNnY0LjIyOGMtLjIxNC4wNzItLjUuMTQzLS44NTcuMjE1LS4zMjEuMTA3LS42Ni4xOTYtMS4wMTcuMjY3YTExLjA2IDExLjA2IDAgMDEtMS45OC4yMTRjLTEuMjQ5IDAtMi4yODQtLjI1LTMuMTA1LS43NS0uODIxLS40OTktMS4zNTYtMS4zNzMtMS42MDYtMi42MjItMS4yMTMgMS4xNzctMi43MTIgMi4wMzQtNC40OTcgMi41Ny0xLjc0OC41MzUtMy40NDQuODAyLTUuMDg1LjgwMi0xLjI0OSAwLTIuNDQ1LS4xNzgtMy41ODctLjUzNWE5LjYzNSA5LjYzNSAwIDAxLTMuMDUxLTEuNDQ1IDcuOTY1IDcuOTY1IDAgMDEtMi4wODgtMi41MTZjLS40OTktMS4wMzUtLjc0OS0yLjIzLS43NDktMy41ODcgMC0xLjcxMy4zMDMtMy4xMDUuOTEtNC4xNzUuNjQyLTEuMDcxIDEuNDYzLTEuOTEgMi40NjItMi41MTZhMTAuOTggMTAuOTggMCAwMTMuNDI2LTEuMjg1IDM2LjE3IDM2LjE3IDAgMDEzLjg1NS0uNjQyIDI2LjYzMiAyNi42MzIgMCAwMTMuMTU4LS40MjljLjk5OS0uMTA3IDEuODczLS4yNjcgMi42MjMtLjQ4Mi43ODUtLjIxNCAxLjM5Mi0uNTM1IDEuODItLjk2My40NjQtLjQ2NC42OTYtMS4xNDIuNjk2LTIuMDM0IDAtLjc4NS0uMTk2LTEuNDI4LS41ODktMS45MjdhMy4zMDcgMy4zMDcgMCAwMC0xLjM5Mi0xLjEyNSA0LjkyMyA0LjkyMyAwIDAwLTEuODItLjUzNWMtLjY3OC0uMTA3LTEuMzItLjE2LTEuOTI3LS4xNi0xLjcxMyAwLTMuMTIzLjM1Ny00LjIyOSAxLjA3LTEuMTA2LjcxNC0xLjczMSAxLjgyLTEuODc0IDMuMzJoLTYuMTAyYy4xMDctMS43ODUuNTM1LTMuMjY2IDEuMjg1LTQuNDQ0YTguOTY5IDguOTY5IDAgMDEyLjgzNy0yLjgzN2MxLjE3OC0uNzE0IDIuNDk4LTEuMjEzIDMuOTYxLTEuNDk5YTIzLjQyNSAyMy40MjUgMCAwMTQuNDk3LS40MjhjMS4zNTYgMCAyLjY5NC4xNDMgNC4wMTUuNDI4IDEuMzIuMjg2IDIuNDk4Ljc1IDMuNTMzIDEuMzkyYTcuNTQgNy41NCAwIDAxMi41NjkgMi41MTZjLjY0MyAxIC45NjQgMi4yMy45NjQgMy42OTR2MTQuMjM5em0tNi4xMDMtNy43MDljLS45MjguNjA3LTIuMDcuOTgyLTMuNDI2IDEuMTI0YTM5LjY2MyAzOS42NjMgMCAwMC00LjA2OC41MzZjLS42NDMuMTA3LTEuMjY3LjI2Ny0xLjg3NC40ODFhNC44NTggNC44NTggMCAwMC0xLjYwNi44MDNjLS40NjQuMzIyLS44MzguNzY4LTEuMTI0IDEuMzM5LS4yNS41MzUtLjM3NSAxLjE5NS0uMzc1IDEuOTggMCAuNjc4LjE5NyAxLjI1LjU4OSAxLjcxMy4zOTMuNDY0Ljg1Ny44NCAxLjM5MiAxLjEyNS41NzEuMjUgMS4xNzguNDI4IDEuODIuNTM1LjY3OC4xMDcgMS4yODUuMTYgMS44Mi4xNi42NzggMCAxLjQxLS4wODkgMi4xOTUtLjI2N2E2Ljk3NyA2Ljk3NyAwIDAwMi4xOTUtLjkxIDUuODg2IDUuODg2IDAgMDAxLjc2Ni0xLjYwNmMuNDY0LS42NzguNjk2LTEuNDk5LjY5Ni0yLjQ2M3YtNC41NXpNMTQyLjMwNyAzMS4xMTRjLjE3OCAxLjc4NC44NTYgMy4wMzMgMi4wMzQgMy43NDdzMi41ODcgMS4wNyA0LjIyOSAxLjA3Yy41NzEgMCAxLjIxMy0uMDM1IDEuOTI3LS4xMDZhOS40MTggOS40MTggMCAwMDIuMDg4LS41MzZjLjY0Mi0uMjUgMS4xNi0uNjA3IDEuNTUyLTEuMDcuNDI4LS41LjYyNS0xLjE0Mi41ODktMS45MjgtLjAzNi0uNzg1LS4zMjEtMS40MjctLjg1Ni0xLjkyNy0uNTM2LS41LTEuMjMyLS44OTItMi4wODgtMS4xNzctLjgyMS0uMzIyLTEuNzY3LS41OS0yLjgzNy0uODAzYTEzNS41ODEgMTM1LjU4MSAwIDAxLTMuMjY2LS42OTYgMzIuMzkgMzIuMzkgMCAwMS0zLjMxOS0uOTEgMTEuMTk0IDExLjE5NCAwIDAxLTIuODM3LTEuNDQ2IDYuODYgNi44NiAwIDAxLTEuOTgtMi4zMDJjLS41LS45NjMtLjc1LTIuMTQtLjc1LTMuNTMzIDAtMS40OTguMzU3LTIuNzQ3IDEuMDcxLTMuNzQ3YTguMzY0IDguMzY0IDAgMDEyLjc4My0yLjQ2MiAxMi4wMjQgMTIuMDI0IDAgMDEzLjc0OC0xLjMzOCAyMi40NDYgMjIuNDQ2IDAgMDEzLjk2MS0uMzc1YzEuNDI3IDAgMi43ODMuMTYgNC4wNjguNDgyIDEuMzIxLjI4NSAyLjQ5OC43NjcgMy41MzMgMS40NDVhOC4xNzQgOC4xNzQgMCAwMTIuNjIzIDIuNjc2Yy43MTQgMS4wNzEgMS4xNiAyLjM3NCAxLjMzOSAzLjkwOGgtNi4zNzFjLS4yODUtMS40NjMtLjk2My0yLjQ0NC0yLjAzNC0yLjk0NC0xLjAzNS0uNS0yLjIzLS43NS0zLjU4Ni0uNzVhMTMuNiAxMy42IDAgMDAtMS41NTMuMTA4IDYuNjcyIDYuNjcyIDAgMDAtMS42NTkuNDI4Yy0uNS4xNzgtLjkyOC40NjQtMS4yODUuODU2LS4zNTcuMzU3LS41MzUuODQtLjUzNSAxLjQ0NiAwIC43NS4yNDkgMS4zNTYuNzQ5IDEuODIuNTM1LjQ2NCAxLjIxMy44NTYgMi4wMzQgMS4xNzcuODU3LjI4NiAxLjgyLjUzNiAyLjg5MS43NSAxLjA3MS4yMTQgMi4xNzcuNDQ2IDMuMzE5LjY5NmEzMy45NiAzMy45NiAwIDAxMy4yNjUuOTFjMS4wNzEuMzU3IDIuMDE3LjgzOSAyLjgzNyAxLjQ0NWE2LjY0MyA2LjY0MyAwIDAxMi4wMzUgMi4zMDJjLjUzNS45MjguODAzIDIuMDcuODAzIDMuNDI2IDAgMS42NDItLjM3NSAzLjAzMy0xLjEyNSA0LjE3NWE4Ljc5NCA4Ljc5NCAwIDAxLTIuOTQ0IDIuNzg0Yy0xLjE3Ny43MTQtMi40OTggMS4yMzEtMy45NjEgMS41NTJhMjAuMTggMjAuMTggMCAwMS00LjMzNi40ODJjLTEuNzQ5IDAtMy4zNzMtLjE5Ni00Ljg3MS0uNTg5LTEuNDY0LS4zOTItMi43NDgtLjk4LTMuODU1LTEuNzY2YTkuNDMgOS40MyAwIDAxLTIuNTY5LTIuOTk4Yy0uNjA3LTEuMjEzLS45MjgtMi42NC0uOTY0LTQuMjgyaDYuMTAzek0xNjUuNDYyIDEuNzc5aDYuMTAzdjE0LjE4NWguMTA3Yy43NDktMS4yNDkgMS44NTUtMi4yODQgMy4zMTktMy4xMDQgMS40OTgtLjg1NyAzLjE1OC0xLjI4NSA0Ljk3OC0xLjI4NSAzLjAzMyAwIDUuNDI0Ljc4NSA3LjE3MyAyLjM1NSAxLjc0OSAxLjU3IDIuNjIzIDMuOTI2IDIuNjIzIDcuMDY2VjQwaC02LjEwMlYyMi42MDJjLS4wNzItMi4xNzctLjUzNi0zLjc0Ny0xLjM5Mi00LjcxLS44NTctMS0yLjE5NS0xLjUtNC4wMTUtMS41LTEuMDM1IDAtMS45NjMuMTk3LTIuNzg0LjU5YTUuNjI2IDUuNjI2IDAgMDAtMi4wODcgMS41NTJjLS41NzEuNjQyLTEuMDE3IDEuNDEtMS4zMzkgMi4zMDJhOC4zMTYgOC4zMTYgMCAwMC0uNDgxIDIuODM3VjQwaC02LjEwM1YxLjc3OXpNMjE1LjIwNCAyMy43MjZhOS4yODQgOS4yODQgMCAwMC0uNjQyLTIuNzgzIDYuNTE4IDYuNTE4IDAgMDAtMS4zOTItMi4zMDIgNi4wNTEgNi4wNTEgMCAwMC0yLjE0MS0xLjYwNmMtLjgyMS0uNDI4LTEuNzQ5LS42NDItMi43ODQtLjY0Mi0xLjA3IDAtMi4wNTIuMTk2LTIuOTQ0LjU4OGE2LjUxIDYuNTEgMCAwMC0yLjI0OCAxLjU1MyA4IDggMCAwMC0xLjQ5OSAyLjMwMiA4LjUxOCA4LjUxOCAwIDAwLS41ODkgMi44OWgxNC4yMzl6bS0xNC4yMzkgNC4wMTVjMCAxLjA3LjE0MyAyLjEwNi40MjggMy4xMDUuMzIxIDEgLjc4NSAxLjg3NCAxLjM5MiAyLjYyMy42MDcuNzUgMS4zNzQgMS4zNTYgMi4zMDIgMS44Mi45MjguNDI4IDIuMDM0LjY0MiAzLjMxOS42NDIgMS43ODQgMCAzLjIxMi0uMzc0IDQuMjgyLTEuMTI0IDEuMTA3LS43ODUgMS45MjctMS45NDUgMi40NjMtMy40OGg1Ljc4MWMtLjMyMSAxLjUtLjg3NCAyLjgzOC0xLjY1OSA0LjAxNmExMS45NDMgMTEuOTQzIDAgMDEtMi44MzggMi45OTcgMTIuMDc5IDEyLjA3OSAwIDAxLTMuNzQ3IDEuNzY3IDE0LjEzNSAxNC4xMzUgMCAwMS00LjI4Mi42NDJjLTIuMTc3IDAtNC4xMDQtLjM1Ny01Ljc4Mi0xLjA3LTEuNjc3LS43MTQtMy4xMDQtMS43MTMtNC4yODItMi45OTgtMS4xNDItMS4yODUtMi4wMTYtMi44Mi0yLjYyMy00LjYwNC0uNTcxLTEuNzg0LS44NTctMy43NDctLjg1Ny01Ljg4OCAwLTEuOTYzLjMwNC0zLjgxOS45MS01LjU2Ny42NDMtMS43ODUgMS41MzUtMy4zMzcgMi42NzctNC42NThhMTIuOTIgMTIuOTIgMCAwMTQuMjI5LTMuMjEyYzEuNjQyLS43ODUgMy40OTctMS4xNzcgNS41NjctMS4xNzcgMi4xNzcgMCA0LjEyMi40NjQgNS44MzUgMS4zOTIgMS43NDkuODkyIDMuMTk0IDIuMDg3IDQuMzM2IDMuNTg2IDEuMTQyIDEuNSAxLjk2MyAzLjIzIDIuNDYzIDUuMTkzLjUzNSAxLjkyNy42NzggMy45MjUuNDI4IDUuOTk1aC0yMC4zNDJ6TTIyMy40MyAxMi4zMjRoNi40NzdsNS40MDcgMjAuNjYzaC4xMDdsNS4xOTMtMjAuNjYzaDYuMTU2bDQuOTc4IDIwLjY2M2guMTA3bDUuNjIxLTIwLjY2M2g2LjIxTDI1NS4wMTQgNDBoLTYuMjY0bC01LjEzOS0yMC41NTZoLS4xMDdMMjM4LjQxOSA0MGgtNi40MjRsLTguNTY1LTI3LjY3NnoiIGZpbGw9IiMwMDAiLz48L3N2Zz4=" class="logo-img" alt="Cashew Logo">
+						      <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjY0IiBoZWlnaHQ9IjUyIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxwYXRoIGZpbGwtcnVsZT0iZXZlbm9kZCIgY2xpcC1ydWxlPSJldmVub2RkIiBkPSJNLjczNSAyNi4yMTJjMCAxNC4xOTQgMTEuNTA3IDI1LjcwMiAyNS43MDMgMjUuNzAyIDE4LjE5NCAwIDI1LjcwMi0xMS41MDggMjUuNzAyLTI1LjcwM0M1Mi4xNCAxMi4wMTggNDAuNjMyLjUxIDI2LjQzNy41MVMuNzM1IDEyLjAxNy43MzUgMjYuMjEtem0xNi4xMDguMTQ3Yy0xLjMyMy0xLjM5Ny0zLjg3Ny0xLjE1Ny0zLjc2Ny43NjQuNDI3IDcuNDQzIDYuODA4IDEzLjEzMSAxNC4yNTIgMTIuNzA0IDcuNDQzLS40MjcgMTMuMTMxLTYuODA3IDEyLjcwNC0xNC4yNTEtLjA3LTEuMjMzLTEuNzA1LTEuMzg0LTIuNDQ3LS4zOTdhMTMuNTYzIDEzLjU2MyAwIDAxLTEwLjA5IDUuNDA3IDEzLjU2MyAxMy41NjMgMCAwMS0xMC42NTItNC4yMjd6IiBmaWxsPSIjRUM1OTMxIi8+PHBhdGggZD0iTTk2Ljg5NSAyMS41ODVjLS4yNS0xLjcxMy0uOTQ2LTIuOTk4LTIuMDg4LTMuODU0LTEuMTA2LS44OTItMi41MTYtMS4zMzgtNC4yMjktMS4zMzgtLjc4NSAwLTEuNjI0LjE0Mi0yLjUxNi40MjgtLjg5Mi4yNS0xLjcxMy43NS0yLjQ2MiAxLjQ5OS0uNzUuNzEzLTEuMzc0IDEuNzMtMS44NzQgMy4wNTEtLjUgMS4yODUtLjc1IDIuOTgtLjc1IDUuMDg1IDAgMS4xNDMuMTI2IDIuMjg1LjM3NSAzLjQyNy4yODYgMS4xNDIuNzE0IDIuMTU5IDEuMjg1IDMuMDVhNy41MDkgNy41MDkgMCAwMDIuMzAyIDIuMTk2Yy45MjguNTM1IDIuMDUyLjgwMyAzLjM3Mi44MDMgMS43ODUgMCAzLjI0OC0uNTU4IDQuMzktMS42NiAxLjE3OC0xLjEwNiAxLjkxLTIuNjU5IDIuMTk1LTQuRTV3aDYuMTAyYy0uNTcxIDMuNjA0LTEuOTQ1IDYuMzctNC4xMjIgOC4yOTctMi4xNCAxLjg5Mi00Ljk5NiAyLjgzNy04LjU2NSAyLjgzNy0yLjE3NyAwLTQuMTA0LS4zNTctNS43ODEtMS4wNy0xLjY0Mi0uNzUtMy4wMzMtMS43NDktNC4xNzUtMi45OTgtMS4xNDItMS4yODUtMi4wMTctMi44MDEtMi42MjMtNC41NS0uNTcyLTEuNzQ5LS44NTctMy42NC0uODU3LTUuNjc1IDAtMi4wNy4yODUtNC4wMTQuODU3LTUuODM0LjU3LTEuODIgMS40MjctMy4zOSAyLjU2OS00LjcxMSAxLjE0Mi0xLjM1NiAyLjU1Mi0yLjQxIDQuMjI5LTMuMTU5IDEuNzEzLS43ODUgMy43MTItMS4xNzcgNS45OTYtMS4xNzcgMS42MDUgMCAzLjEyMi4yMTQgNC41NS42NDIgMS40NjMuMzkzIDIuNzQ4IDEgMy44NTQgMS44MmE5LjcwMSA5LjcwMSAwIDAxMi43ODQgMy4xMDVjLjcxMyAxLjI1IDEuMTQyIDIuNzMgMS4yODQgNC40NDNoLTYuMTAzeE0xMzEuMTM3IDMzLjg0NGMwIC43NS4wODkgMS4yODUuMjY3IDEuNjA2LjIxNS4zMi42MDcuNDgxIDEuMTc4LjQ4MWguNjQyYy4yNSAwIC41MzYtLjAzNS44NTctLjEwNnY0LjIyOGMtLjIxNC4wNzItLjUuMTQzLS44NTcuMjE1LS4zMjEuMTA3LS42Ni4xOTYtMS4wMTcuMjY3YTExLjA2IDExLjA2IDAgMDEtMS45OC4yMTRjLTEuMjQ5IDAtMi4yODQtLjI1LTMuMTA1LS43NS0uODIxLS40OTktMS4zNTYtMS4zNzMtMS42MDYtMi42MjItMS4yMTMgMS4xNzctMi43MTIgMi4wMzQtNC40OTcgMi41Ny0xLjc0OC41MzUtMy40NDQuODAyLTUuMDg1LjgwMi0xLjI0OSAwLTIuNDQ1LS4xNzgtMy41ODctLjUzNWE5LjYzNSA5LjYzNSAAwIDAxLTMuMDUxLTEuNDQ1IDcuOTY1IDcuOTY1IDAgMDEtMi4wODgtMi41MTZjLS40OTktMS4wMzUtLjc0OS0yLjIzLS43NDktMy41ODcgMC0xLjcxMy4zMDMtMy4xMDUuOTEtNC4xNzUuNjQyLTEuMDcxIDEuNDYzLTEuOTEgMi40NjItMi41MTZhMTAuOTggMTAuOTggMCAwMTMuNDI2LTEuMjg1IDM2LjE3IDM2LjE3IDAgMDEzLjg1NS0uNjQyIDI2LjYzMiAyNi42MzIgMCAwMTMuMTU4LS40MjljLjk5OS0uMTA3IDEuODczLS4yNjcgMi42MjMtLjQ4Mi43ODUtLjIxNCAxLjM5Mi0uNTM1IDEuODItLjk2My40NjQtLjQ2NC42OTYtMS4xNDIuNjk2LTIuMDM0IDAtLjc4NS0uMTk2LTEuNDI4LS41ODktMS45MjdhMy4zMDcgMy4zMDcgMCAwMC0xLjM5Mi0xLjEyNSA0LjkyMyA0LjkyMyAwIDAwLTEuODI0LS41MzVjLS42NzgtLjEwNy0xLjMyLS4xNi0xLjkyNy0uMTYtMS43MTMgMC0zLjEyMy4zNTctNC4yMjkgMS4wNy0xLjEwNi43MTQtMS43MzEgMS44Mi0xLjg3NCAzLjMyaC02LjEwMmMuMTA3LTEuNzg1LjUzNS0zLjI2NiAxLjI4NS00LjQ0NGE4Ljk2OSA4Ljk2OSAwIDAxMi44MzctMi44M2MxLjE3OC0uNzE0IDIuNDk4LTEuMjEzIDMuOTYxLTEuNDk5YTIzLjQyNSAyMy40MjUgMCAwMTQuNDk3LS40MjhjMS4zNTYgMCAyLjY5NC4xNDMgNC4wMTUuNDI4IDEuMzIuMjg2IDIuNDk4Ljc1IDMuNTMzIDEuMzkyYTcuNTQgNy41NCAwIDAxMi41NjkgMi41MTZjLjY0MyAxIC45NjQgMi4yMy45NjQgMy42OTR2MTQuMjM5em0tNi4xMDMtNy43MDljLS45MjguNjA3LTIuMDcuOTgyLTMuNDI2IDEuMTI0YTM5LjY2MyAzOS42NjMgMCAwMC00LjA2OC41MzZjLS42NDMuMTA3LTEu2TY3LjI2Ny0xLjg3NC40ODFhNC44NTggNC44NTggMCAwMC0xLjYwNi44MDNjLS40NjQuMzIyLS44MzguNzY4LTEuMTI0IDEuMzM5LS4yNS41MzUtLjM3NSAxLjE5NS0uMzc1IDEuOTggMCAuNjc4LjE5NyAxLjI1LjU4OSAxLjcxMy4zOTMuNDY0Ljg1Ny44NCAxLjM5MiAxLjEyNS41NzEuMjUgMS4xNzguNDI4IDEuODIuNTM1LjY3OC4xMDcgMS4yODUuMTYgMS44Mi4xNi42NzggMCAxLjQxLS4wODkgMi4xOTUtLjI2N2E2Ljk3NyA2Ljk3NyAwIDAwMi4xOTUtLjkxIDUuODg2IDUuODg2IDAgMDAxLjc2Ni0xLjYwNmMuNDY0LS42NzguNjk2LTEuNDk5Ljc2Ni0yLjQ2M3YtNC41NXpNMTQyLjMwNyAzMS4xMTRjLjE3OCAxLjc4NC44NTYgMy4wMzMgMi4wMzQgMy43NDdzMi41ODcgMS4wNyA0LjIyOSAxLjA3Yy41NzEgMCAxLjIxMy0uMDM1IDEuOTI3LS4xMDZhOS40MTggOS40MTggMCAwMDIuMDg4LS41MzZjLjY0Mi0uMjUgMS4xNi0uNjA3IDEuNTUyLTEuMDcuNDI4LS41LjYyNS0xLjE0Mi41ODktMS45MjgtLjAzNi0uNzg1LS4zMjEtMS40MjctLjg1Ni0xLjkyNy0uNTM2LS41LTEuMjMyLS44OTItMi4wODgtMS4xNzctLjgyMS0uMzIyLTEuNzY3LS41OS0yLgzNy0uODAzYTEzNS41ODEgMTM1LjU4MSAwIDAxLTMuMjY2LS42OTYgMzIuMzkgMzIuMzkgMCAwMS0zLjMxOS0uOTEgMTEuMTk0IDExLjE5NCAwIDAxLTIuODM3LTEuNDQ2IDYuODYgNi44NiAwIDAxLTEuOTgtMi4zMDJjLS41LS45NjMtLjc1LTIuMTQtLjc1LTMuNTMzIDAtMS40OTguMzU3LTIuNzQ3IDEuMDcxLTMuNzQ3YTguMzY0IDguMzY0IDAgMDEyLjc4My0yLjQ2MiAxMi4wMjQgMTIuMDI0IDAgMDEzLjc0OC0xLjMzOCAyMi40NDYgMjIuNDQ2IDAgMDEzLjk2MS0uMzc1YzEuNDI3IDAgMi43ODMuMTYgNC4wNjguNDgyIDEuMzIxLjI4NSAyLjQ5OC43NjcgMy41MzMgMS40NDVhOC4xNzQgOC4xNzQgMCAwMTIuNjIzIDIuNjc2Yy43MTQgMS4wNzEgMS4xNiAyLjM3NCAxLjMzOSAzLjgwOGgtNi4zNzFjLS4yODUtMS40NjMtLjk2My0yLjQ0NC0yLjAzNC0yLjk0NC0xLjAzNS0uNS0yLjIzLS43NS0zLjU4Ni0uNzVhMTMuNiAxMy42IDAgMDAtMS41NTMsLjEwOCA2LjY3MiA2LjY3MiAwIDAwLTEuNjU5LjQyOGMtLjUuMTc4LS45MjguNDY0LTEuMjg1Ljg1Ni0uMzU3LjM1Ny0uNTM1Ljg0LS41MzUgMS40NDYgMCAuNzUuMjQ5IDEuMzU2Ljc0OSAxLjgyLjUzNS40NjQgMS4yMTMuODU2IDIuMDM0IDEuMTc3Ljg1Ny4yODYgMS44Mi41MzYgMi44OTEuNzUgMS4wNzEuMjE0IDIuMTc3LjQ0NiAzLjMxOS42OTZhMzMuOTYgMzMuOTYgMCAwMTMuMjY1LjkxYzEuMDcxLjM1NyAyLjAxNy44MzkgMi44MzcgMS40NDVhNi42NDMgNi42NDMgMCAwMTIuMDM1IDIuMzAyYy41MzUuOTI4LjgwMyAyLjA3LjgwMyAzLjQyNiAwIDEuNjQyLS4zNzUgMy4wMzMtMS4xMjUgNC4xNzVhOC43OTQgOC43OTQgMCAwMS0yLjk0NCAyLjc4NGMtMS4xNzcuNzE0LTIuNDk4IDEuMjMxLTMuOTYxIDEuNTUyYTIwLjE4IDIwLjE4IDAgMDEtNC4zMzYuNDgyYy0xLjc0OSAwLTMuMzczLS4xOTYtNC44NzEtLjU4OS0xLjQ2NC0uMzkyLTIuNzQ4LS45OC0zLjg1NS0xLjc2NmE5LjQzIDkuNDMgMCAwMS0yLjU2OS0yLjk5OGMtLjYwNy0xLjIxMy0uOTI4LTIuNjQtLjk2NC00LjI4Mmg2LjEwM3pNMTY1LjQ2MiAxLjc3OWg2LjEwM3YxNC4xODVoLjEwN2MuNzQ5LTEuMjQ5IDEuODU1LTIuMjg0IDMuMzE5LTMuMTA0IDEuNDk4LS44NTcgMy4xNTgtMS4yODUgNC45NzgtMS4yODUgMy4wMzMgMCA1LjQyNC43ODUgNy4xNzMgMi4zNTUgMS43NDkgMS41NyAyLjYyMyAzLjkyNiAyLjYyMyA3LjA2NlY0MGgtNi4xMDJWMjIuNjAyYy0uMDcyLTIuMTc3LS41MzYtMy43NDctMS4zOTItNC43MS0uODU3LTEtMi4xOTUtMS41LTQuMDE1LTEuNS0xLjAzNSAwLTEuOTYzLjE5Ny0yLjc4NC41OWE1LjYyNiA1LjYyNiAwIDAwLTIuMDg3IDEuNTUyYy0uNTcxLjY0Mi0xLjAxNyAxLjQxLTEuMzM5IDIuMzAyYTguMzE2IDguMzE2IDAgMDAtLjQ4MSAyLjgzN1Y0MGgtNi4xMDNWMS43Nzl6TTIxNS4yMDQgMjMuNzI2YTkuMjg0IDkuMjg0IDAgMDAtLjY0Mi0yLjc4MyA2LjUxOCA2LjUxOCAwIDAwLTEuMzkyLTIuMzAyIDYuMDUxIDYuMDUxIDAgMDAtMi4xNDEtMS42MDZjLS44MjEtLjQyOC0xLjc0OS0uNjQyLTIuNzg0LS42NDItMS4wNyAwLTIuMDUyLjE5Ni0yLjk0NC41ODhhNi41MSA2LjUxIDAgMDAtMi4yNDggMS41NTMgOCA4IDAgMDAtMS40OTkgMi4zMDIgOC41MTggOC41MTggMCAwMC0uNTg5IDIuODloMTQuMjM5em0tMTQuMjM5IDQuMDE1YzAgMS4wNy4xNDMgMi4xMDYuNDI4IDMuMTA1LjMyMSAxIC43ODUgMS44NzQgMS4zOTIgMi42MjMuNjA3Ljc1IDEuMzc0IDEuMzU2IDIuMzAyIDEuODIuOTI4LjQyOCAyLjAzNC42NDIgMy4zMTkuNjQyIDEuNzg0IDAgMy4yMTItLjM3NCA0LjI4Mi0xLjEyNCAxLjEwNy0uNzg1IDEuOTI3LTEuOTQ1IDIuNDYzLTMuNDhoNS43ODFjLS4zMjEgMS41LS44NzQgMi44MzgtMS42NTkgNC4wMTZhMTEuOTQzIDExLjk0MyAwIDAxLTIuODM4IDIuOTk3IDEyLjA3OSAxMi4wNzkgMCAwMS0zLjc0NyAxLjc2NyAxNC4xMzUgMTQuMTM1IDAgMDEtNC4yODIuNjQyYy0yLjE3NyAwLTQuMTA0LS4zNTctNS43ODItMS4wNy0xLjY3Ny0uNzE0LTMuMTA0LTEuNzEzLTQuMjgyLTIuOTk4LTEuMTQyLTEuMjg1LTIuMDE2LTIuODItMi42MjMtNC42MDQtLjU3MS0xLjc4NC0uODU3LTMuNzQ3LS44NTctNS44ODggMC0xLjk2My4zMDQtMy44MTkuOTEtNS41NjcuNjQzLTEuNzg1IDEuNTM1LTMuMzM3IDIuNjc3LTQuNjU4YTEyLjkyIDEyLjkyIDAgMDE0LjIyOS0zLjIxMmMxLjY0Mi0uNzg1IDMuNDk3LTEuMTc3IDUuNTY3LTEuMTc3IDIuMTc3IDAgNC4xMjIuNDY0IDUuODM1IDEuMzkyIDEuNzQ5Ljg5MiAzLjE5NCAyLjA4NyA0LjMzNiAzLjU4NiAxLjE0MiAxLjUgMS45NjMgMy4yMyAyLjQ2MyA1LjE5My41MzUgMS44MjcuNjc4IDMuOTI1LjQyOCA1Ljk5NWgtMjAuMzQyeE0yMjMuNDMgMTIuMzI0aDYuNDc3bDUuNDA3IDIwLjY2M2guMTA3bDUuMTkzLTIwLjY2M2g2LjE1Nmw0Ljk3OCAyMC42NjNoLjEwN2w1LjYyMS0yMC42NjNoNi4yMUwyNTUuMDE0IDQwYy02LjI2NGwtNS4xMzktMjAuNTU2aC0uMTA3TDIzOC40MTkgNDBoLTYuNDI0bC04LjU2NS0yNy42NzZ6IiBmaWxsPSIjMDAwIi8+PC9zdmc+" class="logo-img" alt="Cashew Logo">
 					      </header>
               </div>
               <div class="backCont___3v1Dd"></div>
@@ -169,7 +194,7 @@
                           onblur="this.style.outline='none'"
                           onfocus="this.style.outline='1px dashed #ccc'"
                         >
-                          Оплата проезда в автобусе, гар. номер 13986 г. Мозырь Автобусный парк #2 г.Мозыря
+                          
                         </h2>
                         <div>
                           <h2 class="amountLabel___2dQrA">Активен с:</h2>
@@ -193,7 +218,7 @@
                           "
                           onblur="this.style.outline='none'"
                           onfocus="this.style.outline='1px dashed #ccc'"
-                        >1.05 BYN</h2>
+                        >1.05 бел. руб.</h2>
                       </div>
                     </div>
                   </div>
@@ -225,23 +250,54 @@
   </body>
   <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
   <script>
-    // Функция сборки текста получателя из выпадающего списка и введенного гаражного номера
+    // Загрузка ранее сохраненных настроек из памяти браузера
+    function loadSavedSettings() {
+      if (localStorage.getItem('ticket_transport')) {
+        document.getElementById('transportSelect').value = localStorage.getItem('ticket_transport');
+      }
+      if (localStorage.getItem('ticket_region')) {
+        document.getElementById('regionSelect').value = localStorage.getItem('ticket_region');
+      }
+      if (localStorage.getItem('ticket_garage')) {
+        document.getElementById('garageInput').value = localStorage.getItem('ticket_garage');
+      }
+      if (localStorage.getItem('ticket_includeType')) {
+        document.getElementById('ticketTypeSelect').value = localStorage.getItem('ticket_includeType');
+      }
+    }
+
+    // Функция сборки текста получателя и сохранения выбора в localStorage
     function applyTicketData() {
-      var select = document.getElementById('regionSelect');
-      var garageInput = document.getElementById('garageInput');
-      var recipientTarget = document.getElementById('recipientTarget');
+      var transport = document.getElementById('transportSelect').value;
+      var regionText = document.getElementById('regionSelect').value;
+      var garageNum = document.getElementById('garageInput').value.trim() || '031';
+      var includeTicketType = document.getElementById('ticketTypeSelect').value;
       
-      var regionText = select.value;
-      var garageNum = garageInput.value.trim() || '45369';
-      
+      // Находим текущую стоимость
+      var priceEl = document.querySelectorAll('.amount___ZlVZj')[2];
+      var priceText = priceEl ? priceEl.textContent.trim() : '1.05 руб';
+
+      // Сохранение в localStorage для последующих запусков
+      localStorage.setItem('ticket_transport', transport);
+      localStorage.setItem('ticket_region', regionText);
+      localStorage.setItem('ticket_garage', garageNum);
+      localStorage.setItem('ticket_includeType', includeTicketType);
+
+      // Формирование фрагмента "(билет на одну поездку: ...)"
+      var ticketTypePhrase = '';
+      if (includeTicketType === 'yes') {
+        ticketTypePhrase = ' (билет на одну поездку: ' + priceText + ')';
+      }
+
       // Сборка итоговой строки получателя
-      var fullRecipientText = 'Оплата проезда в автобусе, гар. номер ' + garageNum + ' ' + regionText;
-      
+      var fullRecipientText = 'Оплата проезда в ' + transport + ', гар. номер ' + garageNum + ticketTypePhrase + ' ' + regionText;
+
+      var recipientTarget = document.getElementById('recipientTarget');
       if (recipientTarget) {
         recipientTarget.textContent = fullRecipientText;
       }
-      
-      // Скрытие модального окна после нажатия кнопки
+
+      // Скрытие модального окна
       document.getElementById('regionModal').style.display = 'none';
     }
 
@@ -308,13 +364,19 @@
         drawWithImage(canvas, data);
       }
 
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', function () { drawQR(); setTimes(); });
-      } else {
+      function init() {
         drawQR();
         setTimes();
+        loadSavedSettings();
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
       }
     })();
   </script>
 </html>
+
 
